@@ -17,6 +17,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from pqrs import views
+from pqrs.views import lista_solicitudes
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('menu/', lista_solicitudes),
+
+
+
+
 ]

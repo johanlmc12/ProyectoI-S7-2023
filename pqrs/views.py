@@ -1,3 +1,11 @@
-from django.shortcuts import render
+# views.py
 
-# Create your views here.
+from django.shortcuts import render
+from .models import Solicitud
+
+
+def lista_solicitudes(request):
+    return render(request, 'pqrs/menu.html')
+
+
+
