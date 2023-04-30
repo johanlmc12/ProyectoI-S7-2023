@@ -18,13 +18,15 @@ from django.contrib import admin
 from django.urls import path
 
 from pqrs import views
-from pqrs.views import lista_solicitudes
+from pqrs.views import menu_principal, solicitudes, editor
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('menu/', lista_solicitudes),
+    path('menu/', menu_principal),
 
 
-
+    path('menu/solicitudes.html', solicitudes),
+    path('menu/editor.html', editor),
+    path('menu/menu.html', menu_principal)
 
 ]
