@@ -115,40 +115,45 @@
       <script src="instalar-bp-ac/js/bootstrap.bundle.min.js"></script>
   </head>
 
+<body>
+  <header>
+    <h1>Mi Servicio al Cliente</h1>
+  </header>
+  <nav>
+    <a href="/menu/">Crear PQRS</a>
+    <a href="/menu/solicitudes.html">Mis Solicitudes</a>
+    <a href="/menu/editor.html">Editar Perfil</a>
+  </nav>
+  <main>
+   <h1>Crear PQRS</h1>
+<form method="POST" action="{% url 'classify_polarity' %}">
+  {% csrf_token %}
+  <label for="tipo">Tipo de solicitud:</label>
+  <select id="tipo" name="tipo">
+    <option value="pregunta">Pregunta</option>
+    <option value="queja">Queja</option>
+    <option value="reclamo">Reclamo</option>
+    <option value="sugerencia">Sugerencia</option>
+  </select>
+  <label for="asunto">Asunto:</label>
+  <input type="text" id="asunto" name="asunto">
+  <label for="descripcion">Descripción:</label>
+  <textarea id="descripcion" name="descripcion"></textarea>
+  <input type="submit" value="Enviar">
+</form>
+<br><br>
 
-      <header>
-      <h1>Mi Servicio al Cliente</h1>
-
-    </header>
-    <nav>
-      <a href="menu.html">Crear PQRS</a>
-      <a href="solicitudes.html">Mis Solicitudes</a>
-      <a href="editor.html">Editar Perfil</a>
-    </nav>
-    <main>
-      <h1>Crear PQRS</h1>
-      <form>
-        <label for="tipo">Tipo de solicitud:</label>
-        <select id="tipo" name="tipo">
-          <option value="pregunta">Pregunta</option>
-                  <option value="queja">Queja</option>
-      <option value="reclamo">Reclamo</option>
-      <option value="sugerencia">Sugerencia</option>
-    </select>
-    <label for="asunto">Asunto:</label>
-    <input type="text" id="asunto" name="asunto">
-    <label for="descripcion">Descripción:</label>
-
-          <form action="/classify_polarity" method="POST">
-    <textarea id="descripcion" name="descripcion"></textarea>
-    <input type="submit" value="Enviar">
-    <br> <br>
-
+  <form method="POST">
+    {% csrf_token %}
     <label for="opinion">Estado emocional:</label>
-    <textarea id="opinion" name="opinion"></textarea>
-
-</form></form>
-
-
-
+    <textarea id="opinion" name="opinion">{% if opinion %}{{ opinion.frase }} - Predicción: {{ opinion.prediccion }}{% endif %}</textarea>
+    {% for result in results %}
+      <p>Frase: {{ result.frase }}</p>
+      <p>Predicción: {{ result.prediccion }}</p>
+      <br>
+    {% endfor %}
+  </form>
 </main>
+
+</body>
+</html>
