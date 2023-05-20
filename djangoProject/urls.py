@@ -16,17 +16,21 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.shortcuts import redirect
 
 from pqrs import views
-from pqrs.views import menu_principal, solicitudes, editor
+from pqrs.views import menu_principal, solicitudes, editor, classify_polarity
 
 urlpatterns = [
+    path('', lambda request: redirect('/menu/')),
+    path('classify/', classify_polarity, name='classify_polarity'),
+
     path('admin/', admin.site.urls),
     path('menu/', menu_principal),
 
-
     path('menu/solicitudes.html', solicitudes),
     path('menu/editor.html', editor),
-    path('menu/menu.html', menu_principal)
+    path('menu/menu.html', menu_principal),
+
 
 ]
