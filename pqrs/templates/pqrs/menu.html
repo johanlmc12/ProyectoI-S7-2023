@@ -144,16 +144,9 @@
 <br><br>
 
   <form method="POST">
-    {% csrf_token %}
     <label for="opinion">Estado emocional:</label>
     <textarea id="opinion" name="opinion">{% if opinion %}{{ opinion.frase }} - Predicción: {{ opinion.prediccion }}{% endif %}</textarea>
-    {% for result in results %}
-      <p>Frase: {{ result.frase }}</p>
-      <p>Predicción: {{ result.prediccion }}</p>
-      <br>
-    {% endfor %}
   </form>
 </main>
-
 </body>
 </html>

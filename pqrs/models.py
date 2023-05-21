@@ -7,10 +7,9 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db import models
 
-class Result(models.Model):
+class Results(models.Model):
     frase = models.CharField(max_length=255)
     prediccion = models.FloatField()
 
     def __str__(self):
         return self.frase
-#PARA GENEREAR EL MODELO python manage.py makemigrations

@@ -24,7 +24,7 @@ def editor(request):
 
 def guardar_BD(phrase, prediccion):
     with connection.cursor() as cursor:
-        cursor.execute("INSERT INTO pqrs_modelo (frase, prediccion) VALUES (%s, %s)", [phrase, prediccion])
+        cursor.execute("INSERT INTO tabla_modelo (frase, prediccion) VALUES (%s, %s)", [phrase, prediccion])
 
 
 def classify_polarity(request):
@@ -62,7 +62,7 @@ def classify_polarity(request):
         #bases de datos
         guardar_BD(new_phrase, np.float64(prediction[0]))
         # Renderizar el resultado en un template
-        return render(request, 'pqrs/menu.html', {'results': previous_results, 'opinion': {'frase': new_phrase, 'prediccion': np.float64(prediction[0][0])}})
+        return render(request, 'pqrs/menu.html', {'results': previous_results, 'opinion': {'frase': new_phrase, 'prediccion': np.float64(prediction[0])} })
 
     else:
         form = NewPhrasesForm()
