@@ -143,10 +143,15 @@
 </form>
 <br><br>
 
-  <form method="POST">
-    <label for="opinion">Estado emocional:</label>
-    <textarea id="opinion" name="opinion">{% if opinion %}{{ opinion.frase }} - Predicción: {{ opinion.prediccion }}{% endif %}</textarea>
-  </form>
+<form method="POST">
+  <label for="opinion">Estado emocional:</label>
+    <textarea id="opinion" name="opinion">{% if opinion_final %} -{{ opinion_final }}{% endif %}</textarea>
+ <!--
+<textarea id="opinion" name="opinion">{% if opinion %}{{ opinion.frase }} - Predicción: {{ opinion.prediccion }}{% endif %}{% if opinion_final %} -{{ opinion_final }}{% endif %}</textarea>
+-->
+  <input type="submit" value="Enviar">
+</form>
+
 </main>
 </body>
 </html>

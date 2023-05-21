@@ -53,6 +53,16 @@ def classify_polarity(request):
         # Realizar la predicción para la nueva frase
         prediction = loaded_model.predict(new_padded)
 
+        # Determinar si el resultado es "satisfecho" o "insatisfecho"
+        if prediction[0] >= 0.75:
+            opinion_final = "Muy Satisfecho"
+        elif prediction[0] >= 0.50:
+            opinion_final = "Satisfecho"
+        elif prediction[0] >= 0.25:
+            opinion_final = "Neutral"
+        else:
+            opinion_final = "Insatisfecho"
+
         # Obtener las frases y predicciones anteriores almacenadas en la sesión
         previous_results = request.session.get('results', [])
         # Agregar la nueva frase y predicción a la lista de resultados anteriores
@@ -62,7 +72,8 @@ def classify_polarity(request):
         #bases de datos
         guardar_BD(new_phrase, np.float64(prediction[0]))
         # Renderizar el resultado en un template
-        return render(request, 'pqrs/menu.html', {'results': previous_results, 'opinion': {'frase': new_phrase, 'prediccion': np.float64(prediction[0])} })
+       #return render(request, 'pqrs/menu.html', {'results': previous_results, 'opinion': {'frase': new_phrase, 'prediccion': np.float64(prediction[0])}, 'opinion_final': opinion_final })
+        return render(request, 'pqrs/menu.html', {'opinion_final': opinion_final})
 
     else:
         form = NewPhrasesForm()
