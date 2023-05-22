@@ -15,7 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path
 from django.shortcuts import redirect
 
 from pqrs import views
@@ -27,10 +27,11 @@ urlpatterns = [
 
     path('admin/', admin.site.urls),
     path('menu/', menu_principal),
-    path('menu/classify', classify_polarity, name='classify_polarity'),
     path('menu/solicitudes.html', solicitudes),
     path('menu/editor.html', editor),
     path('menu/menu.html', menu_principal),
 
+    path('menu/classify_polarity', classify_polarity, name='classify_polarity'),
+   # path('menu/guardar_datos', guardar_datos, name='guardar_datos'),
 
 ]

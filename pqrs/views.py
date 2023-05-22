@@ -10,8 +10,8 @@ import numpy as np
 
 
 def menu_principal(request):
-    #results = request.session.get('results', [])
-    return render(request, 'pqrs/menu.html') #{'results':results})
+    # results = request.session.get('results', [])
+    return render(request, 'pqrs/menu.html')  # {'results':results})
 
 
 def solicitudes(request):
@@ -22,9 +22,9 @@ def editor(request):
     return render(request, 'pqrs/editor.html')
 
 
-def guardar_BD(phrase, prediccion):
+def guardar_BD(phrase, prediccion, asunto, tipo_solicitud):
     with connection.cursor() as cursor:
-        cursor.execute("INSERT INTO tabla_modelo (frase, prediccion) VALUES (%s, %s)", [phrase, prediccion])
+        cursor.execute("INSERT INTO tabla_modelo (frase, prediccion, asunto, tipo_solicitud) VALUES (%s, %s, %s, %s)", [phrase, prediccion, asunto, tipo_solicitud])
 
 
 def classify_polarity(request):
@@ -33,6 +33,8 @@ def classify_polarity(request):
 
     if request.method == 'POST':
         form = request.POST.get('descripcion', '')  # Obtener la descripción ingresada desde el formulario
+        tipo_solicitud = request.POST.get('tipo_solicitud', '')
+        asunto = request.POST.get('asunto', '')
         new_phrase = form  # La frase ingresada se encuentra en 'form'
 
         # Cargar la arquitectura del modelo
@@ -69,14 +71,23 @@ def classify_polarity(request):
         previous_results.append({'frase': new_phrase, 'prediccion': np.float64(prediction[0])})
         # Actualizar los resultados en la sesión
         request.session['results'] = previous_results
-        #bases de datos
-        guardar_BD(new_phrase, np.float64(prediction[0]))
+        # bases de datos
+        guardar_BD(new_phrase, np.float64(prediction[0]), asunto, tipo_solicitud)
         # Renderizar el resultado en un template
-       #return render(request, 'pqrs/menu.html', {'results': previous_results, 'opinion': {'frase': new_phrase, 'prediccion': np.float64(prediction[0])}, 'opinion_final': opinion_final })
+        # return render(request, 'pqrs/menu.html', {'results': previous_results, 'opinion': {'frase': new_phrase, 'prediccion': np.float64(prediction[0])}, 'opinion_final': opinion_final })
         return render(request, 'pqrs/menu.html', {'opinion_final': opinion_final})
 
     else:
         form = NewPhrasesForm()
         request.session.pop('results', None)
     return render(request, 'pqrs/menu.html', {'form': form})
+
+
+#def guardar_datos(request):
+ #   if request.method == 'POST':
+  #      tipo = request.POST.get('tipo', '')
+   #     asunto = request.POST.get('asunto', '')
+    #    guardar_BD2(tipo, asunto)
+
+
 
