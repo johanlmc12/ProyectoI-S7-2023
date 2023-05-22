@@ -111,37 +111,28 @@
       <a href="editor.html">Editar Perfil</a>
     </nav>
 
-<h1>Mis Solicitudes</h1>
-  <table>
-    <thead>
-      <tr>
-        <th>Fecha</th>
-        <th>Tipo</th>
-        <th>Asunto</th>
-        <th>Estado</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>28/04/2023</td>
-        <td>Queja</td>
-        <td>Producto defectuoso</td>
-        <td>Pendiente</td>
-      </tr>
-      <tr>
-        <td>25/04/2023</td>
-        <td>Reclamo</td>
-        <td>Cobro indebido</td>
-        <td>Resuelto</td>
-      </tr>
-      <tr>
-        <td>22/04/2023</td>
-        <td>Pregunta</td>
-        <td>Horario de atención</td>
-        <td>Resuelto</td>
-      </tr>
-    </tbody>
-  </table>
-
+<main>
+        <h1>Mis Solicitudes</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Tipo</th>
+                    <th>Asunto</th>
+                    <th>Descripcion</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for solicitud in solicitudes %}
+                <tr>
+                    <td>{{ solicitud.fecha }}</td>
+                    <td>{{ solicitud.tipo }}</td>
+                    <td>{{ solicitud.asunto }}</td>
+                    <td>{{ solicitud.descripcion }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
 </body>
 </html>

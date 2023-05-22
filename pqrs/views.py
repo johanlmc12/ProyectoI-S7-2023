@@ -1,5 +1,7 @@
 # views.py
 import os
+from datetime import datetime
+
 from django.db import connection
 from django.shortcuts import render
 from keras.preprocessing.text import tokenizer_from_json
@@ -22,9 +24,9 @@ def editor(request):
     return render(request, 'pqrs/editor.html')
 
 
-def guardar_BD(phrase, prediccion, asunto, tipo_solicitud):
+def guardar_BD(phrase, prediccion, asunto, tipo_solicitud, fecha):
     with connection.cursor() as cursor:
-        cursor.execute("INSERT INTO tabla_modelo (frase, prediccion, asunto, tipo_solicitud) VALUES (%s, %s, %s, %s)", [phrase, prediccion, asunto, tipo_solicitud])
+        cursor.execute("INSERT INTO tabla_modelo (frase, prediccion, asunto, tipo_solicitud, fecha) VALUES (%s, %s, %s, %s, %s)", [phrase, prediccion, asunto, tipo_solicitud, fecha.strftime("%Y-%m-%d %H:%M:%S")])
 
 
 def classify_polarity(request):
@@ -35,16 +37,17 @@ def classify_polarity(request):
         form = request.POST.get('descripcion', '')  # Obtener la descripción ingresada desde el formulario
         tipo_solicitud = request.POST.get('tipo_solicitud', '')
         asunto = request.POST.get('asunto', '')
+        fecha = datetime.now()
         new_phrase = form  # La frase ingresada se encuentra en 'form'
 
         # Cargar la arquitectura del modelo
-        with open(os.path.join(current_dir, 'modelo_arquitectura.json'), 'r') as json_file:
+        with open(os.path.join(current_dir, 'modelo_IA/modelo_arquitectura.json'), 'r') as json_file:
             loaded_model_json = json_file.read()
         loaded_model = tf.keras.models.model_from_json(loaded_model_json)
         # Cargar los pesos del modelo
-        loaded_model.load_weights(os.path.join(current_dir, 'modelo_pesos.h5'))
+        loaded_model.load_weights(os.path.join(current_dir, 'modelo_IA/modelo_pesos.h5'))
         # Cargar el tokenizador
-        with open(os.path.join(current_dir, 'tokenizer.json'), 'r') as json_file:
+        with open(os.path.join(current_dir, 'modelo_IA/tokenizer.json'), 'r') as json_file:
             tokenizer_json = json_file.read()
         tokenizer = tokenizer_from_json(tokenizer_json)
         # Preprocesar la nueva frase
@@ -56,12 +59,10 @@ def classify_polarity(request):
         prediction = loaded_model.predict(new_padded)
 
         # Determinar si el resultado es "satisfecho" o "insatisfecho"
-        if prediction[0] >= 0.75:
-            opinion_final = "Muy Satisfecho"
-        elif prediction[0] >= 0.50:
+        if prediction[0] >= 0.70:
             opinion_final = "Satisfecho"
-        elif prediction[0] >= 0.25:
-            opinion_final = "Neutral"
+        elif prediction[0] >= 0.50:
+            opinion_final = "Insatisfecho"
         else:
             opinion_final = "Insatisfecho"
 
@@ -72,7 +73,7 @@ def classify_polarity(request):
         # Actualizar los resultados en la sesión
         request.session['results'] = previous_results
         # bases de datos
-        guardar_BD(new_phrase, np.float64(prediction[0]), asunto, tipo_solicitud)
+        guardar_BD(new_phrase, np.float64(prediction[0]), asunto, tipo_solicitud, fecha)
         # Renderizar el resultado en un template
         # return render(request, 'pqrs/menu.html', {'results': previous_results, 'opinion': {'frase': new_phrase, 'prediccion': np.float64(prediction[0])}, 'opinion_final': opinion_final })
         return render(request, 'pqrs/menu.html', {'opinion_final': opinion_final})
@@ -82,12 +83,6 @@ def classify_polarity(request):
         request.session.pop('results', None)
     return render(request, 'pqrs/menu.html', {'form': form})
 
-
-#def guardar_datos(request):
- #   if request.method == 'POST':
-  #      tipo = request.POST.get('tipo', '')
-   #     asunto = request.POST.get('asunto', '')
-    #    guardar_BD2(tipo, asunto)
 
 
 
