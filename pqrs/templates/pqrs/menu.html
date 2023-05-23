@@ -128,20 +128,19 @@
       <h1>Crear PQRS</h1>
 <form id="form" method="POST" action="{% url 'classify_polarity' %}">
     {% csrf_token %}
-    <label for="tipo_solicitud">Tipo de solicitud:</label>
-    <select id="tipo_solicitud" name="tipo_solicitud">
+    <label for="tipo">Tipo de solicitud:</label>
+    <select id="tipo" name="tipo">
         <option value="pregunta">Pregunta</option>
         <option value="queja">Queja</option>
         <option value="reclamo">Reclamo</option>
         <option value="sugerencia">Sugerencia</option>
     </select>
 
-    <label for="asunto">Asunto:</label>
-    <input type="text" id="asunto" name="asunto">
 
-    <label for="descripcion">Descripción:</label>
-    <textarea type="text" id="descripcion" name="descripcion"></textarea>
-
+        <label for="asunto">Asunto:</label>
+        <input type="text" id="asunto" name="asunto" required><br><br>
+        <label for="descripcion">Descripción:</label>
+        <input type="text" id="descripcion" name="descripcion" required><br><br>
 
     <input type="submit" value="Enviar">
 </form>
