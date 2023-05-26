@@ -2,214 +2,211 @@
 <!-- menu.html -->
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="UTF-8">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+          integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <title>Mi Servicio al Cliente</title>
     <style>
-      body {
-        font-family: Arial, sans-serif;
-        background-color: #f2f2f2;
-      }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
 
-      header {
-        background-color: #0077b6;
-        color: #fff;
-        padding: 10px;
-        text-align: center;
-        font-size: 24px;
-      }
+        header {
+            background-color: #0077b6;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            font-size: 24px;
+        }
 
-      nav {
-        background-color: #005073;
-        color: #fff;
-        padding: 10px;
-        display: flex;
-        justify-content: space-around;
-      }
+        nav {
+            background-color: #005073;
+            color: #fff;
+            padding: 10px;
+            display: flex;
+            justify-content: space-around;
+        }
 
-      nav a {
-        color: #fff;
-        text-decoration: none;
-        font-weight: bold;
-        font-size: 18px;
-        transition: color 0.3s;
-      }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
 
-      nav a:hover {
-        color: #ffbf00;
-      }
+        nav a:hover {
+            color: #ffbf00;
+        }
 
-      main {
-        margin: 20px;
-        padding: 20px;
-        background-color: #fff;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-      }
+        main {
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
 
-      h1 {
-        font-size: 24px;
-        margin-bottom: 10px;
-      }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
 
-      form {
-        display: flex;
-        flex-direction: column;
-      }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
 
-      label {
-        font-weight: bold;
-        margin-bottom: 5px;
-      }
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
 
-      input[type="text"], textarea {
-        padding: 10px;
-        margin-bottom: 10px;
-        border-radius: 5px;
-        border: 1px solid #ccc;
-        font-size: 16px;
-      }
+        input[type="text"], textarea {
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
 
-      input[type="submit"] {
-        background-color: #0077b6;
-        color: #fff;
-        padding: 10px 20px;
-        border-radius: 5px;
-        border: none;
-        font-size: 16px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-      }
+        input[type="submit"] {
+            background-color: #0077b6;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
 
 
-      input[type="submit"]:hover {
-        background-color: #0077b6;
-      }
+        input[type="submit"]:hover {
+            background-color: #0077b6;
+        }
 
-      input[type="submit2"] {
-        background-color: #ffbf00;
-        color: #fff;
-        padding: 10px 20px;
-        border-radius: 5px;
-        border: none;
-        font-size: 16px;
-        cursor: pointer;
-        transition: background-color 0.3s; text-align: center;  /* Centrar el texto */
-      }
-      table {
-        border-collapse: collapse;
-        width: 100%;
-      }
+        input[type="submit2"] {
+            background-color: #ffbf00;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-align: center; /* Centrar el texto */
+        }
 
-      th, td {
-        padding: 10px;
-        text-align: left;
-        border-bottom: 1px solid #ccc;
-      }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
 
-      th {
-        background-color: #0077b6;
-        color: #fff;
-      }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ccc;
+        }
+
+        th {
+            background-color: #0077b6;
+            color: #fff;
+        }
     </style>
-      <script src="instalar-bp-ac/js/bootstrap.bundle.min.js"></script>
-  </head>
+    <script src="instalar-bp-ac/js/bootstrap.bundle.min.js"></script>
+</head>
 
-  <body>
-  <header>
-      <h1>Mi Servicio al Cliente</h1>
-  </header>
-  <nav>
-      <a href="/menu/">Crear PQRS</a>
-      <a href="/menu/solicitudes.html">Mis Solicitudes</a>
-      <a href="/menu/editor.html">Editar Perfil</a>
-  </nav>
-  <main>
-      <h1>Crear PQRS</h1>
-
-
+<body>
+<header>
+    <h1>Mi Servicio al Cliente</h1>
+</header>
+<nav>
+    <a href="/menu/">Crear PQRS</a>
+    <a href="/menu/solicitudes.html">Mis Solicitudes</a>
+    <a href="/menu/editor.html">Editar Perfil</a>
+</nav>
+<main>
+    <h1>Crear PQRS</h1>
 
 
-      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-      <script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
 
-          $(document).ready(function () {
-              $('#tipo').change(function () {
-                  var selectedOption = $(this).val();
+        $(document).ready(function () {
+            $('#tipo').change(function () {
+                var selectedOption = $(this).val();
 
-                  if (selectedOption === 'Sugerencia') {
-                      $('#imagen-sugerencia').show();
-                      $('#imagen-quejas').hide();
-                      $('#imagen-pregunta').hide();
-                      $('#imagen-reclamo').hide();
-                  } else if (selectedOption === 'Queja') {
-                      $('#imagen-sugerencia').hide();
-                      $('#imagen-quejas').show();
-                      $('#imagen-pregunta').hide();
-                      $('#imagen-reclamo').hide();
-                  } else if (selectedOption === 'Pregunta') {
-                      $('#imagen-sugerencia').hide();
-                      $('#imagen-quejas').hide();
-                      $('#imagen-pregunta').show();
-                      $('#imagen-reclamo').hide();
-                  } else if (selectedOption === 'Reclamo') {
-                      $('#imagen-sugerencia').hide();
-                      $('#imagen-quejas').hide();
-                      $('#imagen-pregunta').hide();
-                      $('#imagen-reclamo').show();
-                  } else {
-                      $('#imagen-quejas').hide();
-                      $('#imagen-sugerencia').hide();
-                      $('#imagen-pregunta').hide();
-                      $('#imagen-reclamo').hide();
-                  }
-              });
-          });
-      </script>
+                if (selectedOption === 'Sugerencia') {
+                    $('#imagen-sugerencia').show();
+                    $('#imagen-quejas').hide();
+                    $('#imagen-pregunta').hide();
+                    $('#imagen-reclamo').hide();
+                } else if (selectedOption === 'Queja') {
+                    $('#imagen-sugerencia').hide();
+                    $('#imagen-quejas').show();
+                    $('#imagen-pregunta').hide();
+                    $('#imagen-reclamo').hide();
+                } else if (selectedOption === 'Pregunta') {
+                    $('#imagen-sugerencia').hide();
+                    $('#imagen-quejas').hide();
+                    $('#imagen-pregunta').show();
+                    $('#imagen-reclamo').hide();
+                } else if (selectedOption === 'Reclamo') {
+                    $('#imagen-sugerencia').hide();
+                    $('#imagen-quejas').hide();
+                    $('#imagen-pregunta').hide();
+                    $('#imagen-reclamo').show();
+                } else {
+                    $('#imagen-quejas').hide();
+                    $('#imagen-sugerencia').hide();
+                    $('#imagen-pregunta').hide();
+                    $('#imagen-reclamo').hide();
+                }
+            });
+        });
+    </script>
 
-      <form id="form" method="POST" action="{% url 'classify_polarity' %}">
-          {% csrf_token %}
-          <label for="tipo">Tipo de solicitud:</label>
-          <select id="tipo" name="tipo">
-              <option disabled selected>Seleccione una opcion:</option>
-              <option value="Pregunta">Pregunta</option>
-              <option value="Queja">Queja</option>
-              <option value="Reclamo">Reclamo</option>
-              <option value="Sugerencia">Sugerencia</option>
-          </select>
+    <form id="form" method="POST" action="{% url 'classify_polarity' %}">
+        {% csrf_token %}
+        <label for="tipo">Tipo de solicitud:</label>
+        <select id="tipo" name="tipo">
+            <option disabled selected>Seleccione una opcion:</option>
+            <option value="Pregunta">Pregunta</option>
+            <option value="Queja">Queja</option>
+            <option value="Reclamo">Reclamo</option>
+            <option value="Sugerencia">Sugerencia</option>
+        </select>
 
+        <label for="asunto">Asunto:</label>
+        <input type="text" id="asunto" name="asunto">
+        <label for="descripcion">Descripción:</label>
+        <textarea type="text" id="descripcion" name="descripcion"></textarea>
+        <input type="submit" value="Enviar">
+    </form>
 
-      </form>
+    <br><br>
 
-      <form>
-          <label for="asunto">Asunto:</label>
-          <input type="text" id="asunto" name="asunto">
-          <label for="descripcion">Descripción:</label>
-          <textarea type="text" id="descripcion" name="descripcion"></textarea>
-          <input type="submit" value="Enviar">
-      </form>
-
-      <br><br>
-
-<form method="POST">
-  {% csrf_token %}
-  <label for="opinion">Estado emocional:</label>
-  <textarea id="opinion" name="opinion">{% if opinion_final %}{{ opinion_final }}{% endif %}</textarea>
-</form>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="opinion">Estado emocional:</label>
+        <textarea id="opinion" name="opinion">{% if opinion_final %}{{ opinion_final }}{% endif %}</textarea>
+    </form>
 
 
-      <img id="imagen-quejas" src="{% static 'images/quejas_escala.jpg' %}" alt="Imagen en escala de grises Quejas"
-           style="width: 1200px; height: 600px; margin-left: auto; margin-right: auto; display: none; position: relative; left: 7%; top: 50%;">
-      <img id="imagen-sugerencia" src="{% static 'images/sugerencia_escala.jpg' %}"
-           alt="Imagen en escala de grises Sugerencia"
-           style="width: 1200px; height:600px; margin-left: auto; margin-right: auto; display: none;  position: relative; left: 7%; top: 50%;">
-      <img id="imagen-pregunta" src="{% static 'images/pregunta_escala.jpg' %}"
-           alt="Imagen en escala de grises Pregunta"
-           style="width: 600px; height: 600px; margin-left: auto; margin-right: auto; display: none;  position: relative; left: 30%; top: 50%;">
-      <img id="imagen-reclamo" src="{% static 'images/reclamo_escala.jpg' %}" alt="Imagen en escala de grises Reclamo"
-           style="width: 1200px; height:600px; margin-left: auto; margin-right: auto; display: none;  position: relative; left: 7%; top: 50%;">
-  </main>
-  </body>
+    <img id="imagen-quejas" src="{% static 'images/quejas_escala.jpg' %}" alt="Imagen en escala de grises Quejas"
+         style="width: 1200px; height: 600px; margin-left: auto; margin-right: auto; display: none; position: relative; left: 7%; top: 50%;">
+    <img id="imagen-sugerencia" src="{% static 'images/sugerencia_escala.jpg' %}"
+         alt="Imagen en escala de grises Sugerencia"
+         style="width: 1200px; height:600px; margin-left: auto; margin-right: auto; display: none;  position: relative; left: 7%; top: 50%;">
+    <img id="imagen-pregunta" src="{% static 'images/pregunta_escala.jpg' %}"
+         alt="Imagen en escala de grises Pregunta"
+         style="width: 600px; height: 600px; margin-left: auto; margin-right: auto; display: none;  position: relative; left: 30%; top: 50%;">
+    <img id="imagen-reclamo" src="{% static 'images/reclamo_escala.jpg' %}" alt="Imagen en escala de grises Reclamo"
+         style="width: 1200px; height:600px; margin-left: auto; margin-right: auto; display: none;  position: relative; left: 7%; top: 50%;">
+</main>
+</body>
 
 </html>

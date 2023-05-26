@@ -77,7 +77,8 @@ def classify_polarity(request):
         guardar_BD(descripcion, np.float64(prediction[0]), asunto, tipo, fecha)
         # Renderizar el resultado en un template
         # return render(request, 'pqrs/menu.html', {'results': previous_results, 'opinion': {'frase': new_phrase, 'prediccion': np.float64(prediction[0])}, 'opinion_final': opinion_final })
-        return render(request, 'pqrs/menu.html', {'opinion_final': opinion_final})
+        context = {'opinion_final': opinion_final}
+        return render(request, 'pqrs/menu.html', context)
 
 
 
