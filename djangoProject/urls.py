@@ -23,7 +23,7 @@ from pqrs.views import menu_principal, solicitudes, editor, classify_polarity
 
 urlpatterns = [
     path('', lambda request: redirect('/menu/')),
-    #path('classify/', classify_polarity, name='classify_polarity'),
+    path('classify/', classify_polarity, name='classify_polarity'),
 
     path('admin/', admin.site.urls),
     path('menu/', menu_principal),

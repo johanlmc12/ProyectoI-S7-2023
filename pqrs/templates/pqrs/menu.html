@@ -1,3 +1,4 @@
+{% load static %}
 <!-- menu.html -->
 <!DOCTYPE html>
 <html>
@@ -126,38 +127,88 @@
   </nav>
   <main>
       <h1>Crear PQRS</h1>
-<form id="form" method="POST" action="{% url 'classify_polarity' %}">
-    {% csrf_token %}
-    <label for="tipo_solicitud">Tipo de solicitud:</label>
-    <select id="tipo_solicitud" name="tipo_solicitud">
-        <option value="pregunta">Pregunta</option>
-        <option value="queja">Queja</option>
-        <option value="reclamo">Reclamo</option>
-        <option value="sugerencia">Sugerencia</option>
-    </select>
-
-    <label for="asunto">Asunto:</label>
-    <input type="text" id="asunto" name="asunto">
-
-    <label for="descripcion">Descripción:</label>
-    <textarea type="text" id="descripcion" name="descripcion"></textarea>
 
 
-    <input type="submit" value="Enviar">
-</form>
 
 
-<br><br>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script>
+
+          $(document).ready(function () {
+              $('#tipo').change(function () {
+                  var selectedOption = $(this).val();
+
+                  if (selectedOption === 'Sugerencia') {
+                      $('#imagen-sugerencia').show();
+                      $('#imagen-quejas').hide();
+                      $('#imagen-pregunta').hide();
+                      $('#imagen-reclamo').hide();
+                  } else if (selectedOption === 'Queja') {
+                      $('#imagen-sugerencia').hide();
+                      $('#imagen-quejas').show();
+                      $('#imagen-pregunta').hide();
+                      $('#imagen-reclamo').hide();
+                  } else if (selectedOption === 'Pregunta') {
+                      $('#imagen-sugerencia').hide();
+                      $('#imagen-quejas').hide();
+                      $('#imagen-pregunta').show();
+                      $('#imagen-reclamo').hide();
+                  } else if (selectedOption === 'Reclamo') {
+                      $('#imagen-sugerencia').hide();
+                      $('#imagen-quejas').hide();
+                      $('#imagen-pregunta').hide();
+                      $('#imagen-reclamo').show();
+                  } else {
+                      $('#imagen-quejas').hide();
+                      $('#imagen-sugerencia').hide();
+                      $('#imagen-pregunta').hide();
+                      $('#imagen-reclamo').hide();
+                  }
+              });
+          });
+      </script>
+
+      <form id="form" method="POST" action="{% url 'classify_polarity' %}">
+          {% csrf_token %}
+          <label for="tipo">Tipo de solicitud:</label>
+          <select id="tipo" name="tipo">
+              <option disabled selected>Seleccione una opcion:</option>
+              <option value="Pregunta">Pregunta</option>
+              <option value="Queja">Queja</option>
+              <option value="Reclamo">Reclamo</option>
+              <option value="Sugerencia">Sugerencia</option>
+          </select>
+
+
+      </form>
+
+      <form>
+          <label for="asunto">Asunto:</label>
+          <input type="text" id="asunto" name="asunto">
+          <label for="descripcion">Descripción:</label>
+          <textarea type="text" id="descripcion" name="descripcion"></textarea>
+          <input type="submit" value="Enviar">
+      </form>
+
+      <br><br>
 
 <form method="POST">
-    {% csrf_token %}
-    <label for="opinion">Estado emocional:</label>
-    <textarea id="opinion" name="opinion">{% if opinion_final %} -{{ opinion_final }}{% endif %}</textarea>
+  {% csrf_token %}
+  <label for="opinion">Estado emocional:</label>
+  <textarea id="opinion" name="opinion">{% if opinion_final %}{{ opinion_final }}{% endif %}</textarea>
 </form>
 
 
-
-
+      <img id="imagen-quejas" src="{% static 'images/quejas_escala.jpg' %}" alt="Imagen en escala de grises Quejas"
+           style="width: 1200px; height: 600px; margin-left: auto; margin-right: auto; display: none; position: relative; left: 7%; top: 50%;">
+      <img id="imagen-sugerencia" src="{% static 'images/sugerencia_escala.jpg' %}"
+           alt="Imagen en escala de grises Sugerencia"
+           style="width: 1200px; height:600px; margin-left: auto; margin-right: auto; display: none;  position: relative; left: 7%; top: 50%;">
+      <img id="imagen-pregunta" src="{% static 'images/pregunta_escala.jpg' %}"
+           alt="Imagen en escala de grises Pregunta"
+           style="width: 600px; height: 600px; margin-left: auto; margin-right: auto; display: none;  position: relative; left: 30%; top: 50%;">
+      <img id="imagen-reclamo" src="{% static 'images/reclamo_escala.jpg' %}" alt="Imagen en escala de grises Reclamo"
+           style="width: 1200px; height:600px; margin-left: auto; margin-right: auto; display: none;  position: relative; left: 7%; top: 50%;">
   </main>
   </body>
 
